@@ -5,15 +5,20 @@ async function fetchMusic() {
     data = JSON.stringify(data);
     data = JSON.parse(data);
     const myMusic = [];
-    for (element in data) {
-        data[element] = data[element].split('"')
-        myMusic.push(data[element][1])
+    for (idx in data) {
+        console.log(data[idx].name)
         musicArea.insertAdjacentHTML("afterbegin", `
-        <div class="song"> 
-        <audio controls src="${data[element][1]}">
-        Your browser does not support the
-        <code>audio</code> element.
-        </audio>
+        <div classs="col" id="song"> 
+            <div>
+                <img src="${data[idx].img_link}" alt="song img" />
+            </div>
+            <div>
+                <div class="artist"> ${data[idx].name} - ${data[idx].song_name} </div>
+                    <audio controls src="${data[idx].mp3_link}">
+                    Your browser does not support the
+                    <code>audio</code> element.
+                    </audio>
+                </div>
         </div>
         `);
     }
